@@ -1,0 +1,1 @@
+<input type="hidden" name="salary" id="salary" class="form-control" value="<?= $emp->emp_salary; ?>">

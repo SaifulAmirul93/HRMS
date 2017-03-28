@@ -1,0 +1,1 @@
+<input class="form-control" id="emp_id" name="emp_id" type="text" value="<?= $emp->emp_id; ?>">
