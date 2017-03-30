@@ -41,6 +41,7 @@
   }
 
 </style>
+
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -51,7 +52,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Employees
+        User
         
       </h1>
       <ol class="breadcrumb">
@@ -70,25 +71,20 @@
 
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title"><b>Listing All</b> Employees</h3>
+              <h3 class="box-title"><b>Listing All</b> User</h3>
               <a href="" name="print_all" id="print_all" class="btn btn-success pull-right"><i class="fa fa-print"></i> Print All</a>
             </div>
             <!-- /.box-header -->
-
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Employee ID</th >
-                  <th>Full Name</th>
-                  <th>IC No.</th>
-                  <th>Contact No.</th>
-                  <th>Employee Type</th><!-- 
-
+                  <!-- <th>Intern ID</th> -->
+                  <th>User Name</th>
                   <th>Email</th>
-                  <th>Acc Bank No.</th>
-                  <th>Designation</th> -->
+                  <th>User Role</th>
+                  
                   <th style="width: 15%;" id="exclude_header">Action</th>
                 </tr>
                 </thead>
@@ -96,39 +92,28 @@
                 <?php
                       $n = 0; 
                                 
-                      foreach ($arr as $emp): 
+                      foreach ($arr as $user): 
                       $n++;
                 ?>
                 <tr>
                   <td><?= $n?></td>
-                  <td><?= $emp->emp_id; ?></td>
-                  <td><?= $emp->emp_fullname; ?></td>
-                  <td><?= $emp->ic_No; ?></td>
-                  <td><?= $emp->emp_contactNo; ?></td>
                   
-                  <td><?= $emp->employeeType; ?></td>
-                  <!-- <td><?= $emp->emp_email; ?></td>
-                  <td><?= $emp->emp_accBank; ?></td>
-                  <td><?= $emp->emp_designation; ?></td> -->
-                  <td id="exclude_column" align="center"><a href="<?= site_url('dashboard/page/h4?view=').$emp->emp_id; ?>" name="c5" title="View Employee">
+                  <td><?= $user->user_name; ?></td>
+                  <td><?= $user->user_email; ?></td>
+                  
+                  <td><?= $user->role_desc; ?></td>
+                  
+                  <td id="exclude_column"><a href="<?= site_url('dashboard/page/h8?view=').$user->user_id; ?>" name="c5" title="View User">
                   <button type="button" class="btn btn-info btn-xs" title="View"><i class="fa fa-eye"></i></button></a>
-                  &nbsp;&nbsp;-&nbsp;&nbsp;
-                  <a href="<?= site_url('dashboard/page/c27?edit=').$emp->emp_id; ?>" name="c5" title="Edit Employee">
-                  <button type="button" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></button></a>
-                  &nbsp;&nbsp;-&nbsp;&nbsp;
-                  <a onclick = "return onDel();" href="<?= site_url('dashboard/page/c26?delete=').$emp->emp_id; ?>" name="c5" title="Delete Employee">
+                  &nbsp;&nbsp;&nbsp;
+                  <a href="<?= site_url('dashboard/page/c38?edit=').$user->user_id; ?>" name="c5" title="Edit User">
+                  <button type="button" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></button>
+                  &nbsp;&nbsp;&nbsp;
+                  <a onclick = "return onDel();" href="<?= site_url('dashboard/page/c39?delete=').$user->user_id; ?>" name="c5" title="Delete User">
                   <button type="button" class="btn btn-danger btn-xs"><i class="fa fa-close"></i></button></a>
-                  <br>
-                  <a onclick="window.open('<?= site_url('dashboard/page/c34?print=').$emp->emp_id; ?>');" name="c5" title="Print Employee">
-                  <button type="button" class="btn btn-success btn-xs" title="View"><i class="fa fa-print"></i></button></a>
-
-                  &nbsp;&nbsp;-&nbsp;&nbsp;
-                  <a onclick="window.open('<?= site_url('dashboard/page/a18?view=').$emp->emp_id; ?>');" name="c5" title="Payslip Employee">
-                  <button type="button" class="btn btn-primary btn-xs" title="Payslip Employee"><i class="fa fa-clipboard"></i></button></a>
-
-                  &nbsp;&nbsp;-&nbsp;&nbsp;
-                  <a onclick="window.open('<?= site_url('dashboard/page/a18?view=').$emp->emp_id; ?>');" name="c5" title="Dummy Payslip">
-                  <button type="button" class="btn btn-success btn-xs" title="Payslip Employee"><i class="fa fa-clipboard"></i></button></a>
+                  <!-- &nbsp;&nbsp;&nbsp;
+                  <a href="<?= site_url('dashboard/page/c37?print=').$user->user_id; ?>" name="c5" title="Print Intern">
+                  <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-print"></i></button></a> -->
 
                   </td>  
                 </tr>
@@ -377,7 +362,6 @@ var print_a=document.getElementById('print_all');
 print_a.onclick = function(){
   window.print();
 }
-
 
   $(function () {
     $("#example1").DataTable();

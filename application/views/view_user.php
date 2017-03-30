@@ -3,22 +3,24 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Data Tables</title>
+  <title>AdminLTE 2 | Editors</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="<?php echo base_url();?>/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="<?= base_url(); ?>bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="<?php echo base_url();?>/plugins/datatables/dataTables.bootstrap.css">
+    <!-- bootstrap datepicker -->
+  <link rel="stylesheet" href="<?= base_url(); ?>plugins/datepicker/datepicker3.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?php echo base_url();?>/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="<?= base_url(); ?>dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="<?php echo base_url();?>/dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="<?= base_url(); ?>dist/css/skins/_all-skins.min.css">
+  <!-- bootstrap wysihtml5 - text editor -->
+  <link rel="stylesheet" href="<?= base_url(); ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -27,125 +29,143 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
-<style type="text/css">
-  @media print{
-
-    #exclude_column{
-      display:none;
-
-    }
-
-    #exclude_header{
-      display:none;
-    }
-  }
-
-</style>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
-
-
-     
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Employees
-        
+        User
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Tables</a></li>
-        <li class="active">Data tables</li>
+        
+        <li class="active">View User</li>
       </ol>
     </section>
-
+      
     <!-- Main content -->
     <section class="content">
+
       <div class="row">
-        <div class="col-xs-12">
-          
+      
+          <div class="col-xs-12">
           <!-- /.box -->
 
-          <div class="box">
-            <div class="box-header">
-              <h3 class="box-title"><b>Listing All</b> Employees</h3>
-              <a href="" name="print_all" id="print_all" class="btn btn-success pull-right"><i class="fa fa-print"></i> Print All</a>
-            </div>
-            <!-- /.box-header -->
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title"><b>View User</b></h3>
 
-            <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Employee ID</th >
-                  <th>Full Name</th>
-                  <th>IC No.</th>
-                  <th>Contact No.</th>
-                  <th>Employee Type</th><!-- 
+              </div>
+    <div class="col-lg-12">
+              <div class="row">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                          User Info
+                     </div>
+                      <form role="form" method="post" action="<?= site_url('dashboard/add_mileage'); ?>">
+                      <div class="panel-body">
+                          <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                      <label for="ic_No">User Name :</label>
+                                      
+                                       <input class="form-control input-sm" type="text" name="user_name" id="user_name" value="<?= $arr->user_name; ?>" disabled>
+                                      
+                                     </div>
+                                  </div>
 
-                  <th>Email</th>
-                  <th>Acc Bank No.</th>
-                  <th>Designation</th> -->
-                  <th style="width: 15%;" id="exclude_header">Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php
-                      $n = 0; 
-                                
-                      foreach ($arr as $emp): 
-                      $n++;
-                ?>
-                <tr>
-                  <td><?= $n?></td>
-                  <td><?= $emp->emp_id; ?></td>
-                  <td><?= $emp->emp_fullname; ?></td>
-                  <td><?= $emp->ic_No; ?></td>
-                  <td><?= $emp->emp_contactNo; ?></td>
+                                    
+
+                             
+
+
+                           </div>
+
+                           <div class="row">
+                               <div class="col-md-4">
+                                    <div class="form-group">
+                                      <label for="ic_No">User Email:</label>
+                                      
+                                       <input class="form-control input-sm" type="text" name="user_email" id="user_email" value="<?= $arr->user_email; ?>" disabled>
+                                      
+                                     </div>
+                                  </div> 
+
+
+                           </div>    
+
+                            <div class="row">
+                               <div class="col-md-4">
+                                    <div class="form-group">
+                                      <label for="ic_No">User Role:</label>
+                                        <?php foreach ($lvl as $key) {
+                                                            
+                                                               if($key->role_id == $arr->user_role)
+                                                               { ?>
+                                                                <input class="form-control input-sm" type="text" name="user_role" id="user_role" value="<?= $key->role_desc; ?>" disabled>
+                                                         <?php   } 
+                                                            
+                                                            } ?>
+                                       
+                                      
+                                     </div>
+                                  </div>  
+ 
+
+
+                           </div>
+                      
+
+
+
+                           <div class="row">
+                              <div class="col-md-4">
+
+                          
+                                <input type="hidden" name="id" id="inputId" class="form-control" value="<?= $arr->user_id; ?>">
+                                <a href="<?= site_url('dashboard/page/c38?edit=').$arr->user_id; ?>" name="c5" title="Edit Employee">
+                                  <button type="button" class="btn btn-primary">Edit</button>
+                                  </a>
+                                  &nbsp;&nbsp;
+                                  <a href="<?= site_url('dashboard/page/a22') ?>" name="c5" title="Edit Employee">
+                                  <button type="button" class="btn btn-danger">Back</button>
+                                  </a>  
+                            
+                            </div>
+                            </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
                   
-                  <td><?= $emp->employeeType; ?></td>
-                  <!-- <td><?= $emp->emp_email; ?></td>
-                  <td><?= $emp->emp_accBank; ?></td>
-                  <td><?= $emp->emp_designation; ?></td> -->
-                  <td id="exclude_column" align="center"><a href="<?= site_url('dashboard/page/h4?view=').$emp->emp_id; ?>" name="c5" title="View Employee">
-                  <button type="button" class="btn btn-info btn-xs" title="View"><i class="fa fa-eye"></i></button></a>
-                  &nbsp;&nbsp;-&nbsp;&nbsp;
-                  <a href="<?= site_url('dashboard/page/c27?edit=').$emp->emp_id; ?>" name="c5" title="Edit Employee">
-                  <button type="button" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></button></a>
-                  &nbsp;&nbsp;-&nbsp;&nbsp;
-                  <a onclick = "return onDel();" href="<?= site_url('dashboard/page/c26?delete=').$emp->emp_id; ?>" name="c5" title="Delete Employee">
-                  <button type="button" class="btn btn-danger btn-xs"><i class="fa fa-close"></i></button></a>
-                  <br>
-                  <a onclick="window.open('<?= site_url('dashboard/page/c34?print=').$emp->emp_id; ?>');" name="c5" title="Print Employee">
-                  <button type="button" class="btn btn-success btn-xs" title="View"><i class="fa fa-print"></i></button></a>
-
-                  &nbsp;&nbsp;-&nbsp;&nbsp;
-                  <a onclick="window.open('<?= site_url('dashboard/page/a18?view=').$emp->emp_id; ?>');" name="c5" title="Payslip Employee">
-                  <button type="button" class="btn btn-primary btn-xs" title="Payslip Employee"><i class="fa fa-clipboard"></i></button></a>
-
-                  &nbsp;&nbsp;-&nbsp;&nbsp;
-                  <a onclick="window.open('<?= site_url('dashboard/page/a18?view=').$emp->emp_id; ?>');" name="c5" title="Dummy Payslip">
-                  <button type="button" class="btn btn-success btn-xs" title="Payslip Employee"><i class="fa fa-clipboard"></i></button></a>
-
-                  </td>  
-                </tr>
-                 <?php
-                      endforeach;
-                   ?>
-                </tbody>
-               
-              </table>
-            </div>
-            <!-- /.box-body -->
+                </div>
+                
           </div>
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
+        
+        <!-- /.col-->
       </div>
-      <!-- /.row -->
+      <!-- ./row -->
     </section>
     <!-- /.content -->
   </div>
@@ -355,40 +375,40 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 2.2.3 -->
-<script src="<?= base_url(); ?>/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="<?= base_url(); ?>plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
-<script src="<?= base_url(); ?>/bootstrap/js/bootstrap.min.js"></script>
-<!-- DataTables -->
-<script src="<?= base_url(); ?>/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="<?= base_url(); ?>/plugins/datatables/dataTables.bootstrap.min.js"></script>
-<!-- SlimScroll -->
-<script src="<?= base_url(); ?>/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="<?= base_url(); ?>bootstrap/js/bootstrap.min.js"></script>
 <!-- FastClick -->
-<script src="<?= base_url(); ?>/plugins/fastclick/fastclick.js"></script>
+<script src="<?= base_url(); ?>plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
-<script src="<?= base_url(); ?>/dist/js/app.min.js"></script>
+<script src="<?= base_url(); ?>dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="<?= base_url(); ?>/dist/js/demo.js"></script>
-<!-- page script -->
+<script src="<?= base_url(); ?>dist/js/demo.js"></script>
+<!-- bootstrap datepicker -->
+<script src="<?= base_url(); ?>plugins/datepicker/bootstrap-datepicker.js"></script>
+<!-- CK Editor -->
+<script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="<?= base_url(); ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <script>
-
-var print_a=document.getElementById('print_all');
-
-print_a.onclick = function(){
-  window.print();
-}
-
-
   $(function () {
-    $("#example1").DataTable();
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+     //Date picker
+   /* $('#datepicker').datepicker({
+      autoclose: true
     });
+	
+    $('#datepicker2').datepicker({
+      autoclose: true
+    });
+	
+	  $('#datepicker3').datepicker({
+      autoclose: true
+    });
+*/
+    //bootstrap WYSIHTML5 - text editor
+    $(".textarea").wysihtml5();
   });
 </script>
 </body>

@@ -442,6 +442,19 @@ class dashboard extends CI_Controller
 
                 break;
 
+
+              case "a22" :
+                $this->load->database();
+                $this->load->model('m_user');
+
+                $arr['arr'] = $this->m_user->getAll();
+                //$arr['lvl'] = $this->m_user->getLvl();
+                $this->load->view('nastyHRMS/navigation');
+                $this->load->view('nastyHRMS/header');
+                $this->load->view('list_user.php',$arr);
+                break;
+
+
             case "c42" :
             //print petty cash
               //$data['title'] = '<i class="fa fa-file-text"></i> User Edit';
@@ -816,6 +829,18 @@ class dashboard extends CI_Controller
                 break;
             }
 
+            case "c39":
+            // delete
+                if ($this->input->get('delete')) {
+                $userID = $this->input->get('delete');
+                $this->load->database();
+                $this->load->model('m_user');
+
+                $this->m_user->delete($userID);
+                redirect(site_url('dashboard/page/a22'),'refresh');
+                break;
+            }
+
             case "c33" :
             //edit
                 //$data['title'] = '<i class="fa fa-file-text"></i> User Edit';
@@ -863,6 +888,29 @@ class dashboard extends CI_Controller
 
                 break;
 
+                case "c38" :
+            //edit
+                //$data['title'] = '<i class="fa fa-file-text"></i> User Edit';
+                if ($this->input->get('edit')) {
+                $userID = $this->input->get('edit');
+                //$staffId = $this->my_func->scpro_decrypt($this->input->get('edit'));
+                //echo $staffId;
+                $this->load->database();
+                $this->load->model('m_user');
+                $arr['id'] = $this->input->get('edit');
+                $arr['lvl'] = $this->m_user->getLvl();
+                $arr['arr'] = $this->m_user->getAll($userID);
+
+                /*$data['display'] = $this->load->view($this->parent_page.'/editStaff' , $arr , true);
+                $this->_show('display' , $data , $key); */
+
+                }       
+                //$this->_show('display', $key);
+                $this->load->view('nastyHRMS/navigation');
+                $this->load->view('nastyHRMS/header');
+                $this->load->view('edit_user',$arr);
+                break;
+
             case "h7" :
             //view 1 by 1 practical
                 //$data['title'] = '<i class="fa fa-file-text"></i> User Edit';
@@ -884,7 +932,32 @@ class dashboard extends CI_Controller
                 $this->load->view('nastyHRMS/navigation');
                 $this->load->view('nastyHRMS/header');
                 $this->load->view('view_practical.php',$arr);
-            //end part  
+
+                break;
+                
+                 case "h8" :
+            //view 1 by 1 practical
+                //$data['title'] = '<i class="fa fa-file-text"></i> User Edit';
+                if ($this->input->get('view')) {
+                $userID = $this->input->get('view');
+                //$staffId = $this->my_func->scpro_decrypt($this->input->get('edit'));
+                //echo $staffId;
+                $this->load->database();
+                $this->load->model('m_user');
+                $arr['id'] = $this->input->get('view');
+                $arr['lvl'] = $this->m_user->getLvl();
+                $arr['arr'] = $this->m_user->getAll($userID);
+
+                /*$data['display'] = $this->load->view($this->parent_page.'/editStaff' , $arr , true);
+                $this->_show('display' , $data , $key); */
+
+                }       
+                //$this->_show('display', $key);
+                $this->load->view('nastyHRMS/navigation');
+                $this->load->view('nastyHRMS/header');
+                $this->load->view('view_user.php',$arr);
+
+                break;
 
         	default:
     		//$this->_show();
@@ -1063,6 +1136,37 @@ class dashboard extends CI_Controller
           redirect(site_url('dashboard/page/a7'),'refresh');
         }
       }
+
+       public function updateUser()
+              {
+                      if ($this->input->post()) {
+                      $arr = $this->input->post();          
+                      $this->load->database();
+                      $this->load->model('m_user');
+                      //$this->load->library('my_func');
+                      foreach ($arr as $key => $value) {
+                        if ($value != null) {
+                         /* if ($key == 'pass') {
+                            $value = $this->my_func->scpro_encrypt($value);
+                          }*/
+                          if ($key == 'id') {
+                            $id = $value;
+                          }else{
+                            $arr2[$key] = $value;
+                          }             
+                        }
+                      }
+                      $result = $this->m_user->update($arr2 , $id);
+                      
+                             echo "<script>
+                          alert('Successfully Updated!');  
+                      </script>";
+                      redirect(site_url('dashboard/page/a22'),'refresh');
+                    
+                    }else{
+                      redirect(site_url('dashboard/page/c38'),'refresh');
+                    }
+            }
 
        public function add_petty_cash(){
             if ($this->input->post()) {
