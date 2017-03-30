@@ -814,7 +814,19 @@ class dashboard extends CI_Controller
 
                 $this->load->view('nastyHRMS/navigation');
                 $this->load->view('nastyHRMS/header');
-                $this->load->view('list_intern.php',$arr);
+                $this->load->view('list_intern',$arr);
+                break;
+
+                case 'a16':
+            //view practical
+                $this->load->database();
+                $this->load->model('m_user');
+
+                $arr['lvl'] = $this->m_user->getLvl();
+
+                $this->load->view('nastyHRMS/navigation');
+                $this->load->view('nastyHRMS/header');
+                $this->load->view('add_user',$arr);
                 break;
 
             case "c32":
@@ -1000,6 +1012,41 @@ class dashboard extends CI_Controller
           redirect(site_url('dashboard/page/a2'),'refresh');
         }
       }
+
+      public function addUser()
+              {
+                if ($this->input->post()) {
+                  $arr = $this->input->post();          
+                  $this->load->database();
+                  $this->load->model('m_user');
+                  //$this->load->library('my_func');
+                  
+                  foreach ($arr as $key => $value) {
+                    if ($value != null) {
+                    /*  if ($key == 'pass') {
+                        $value = $this->my_func->scpro_encrypt($value);
+                      }*/
+                     
+                      $arr2[$key] = $value;             
+                    }
+                  }
+                  $result = $this->m_user->insert($arr2);
+
+                    if(!$result)
+                     {
+                      echo "<script>
+                        alert('Successfully Added!');  
+                      </script>";
+                      redirect(site_url('dashboard/page/a22'),'refresh');
+                     }
+                     else{
+                      $this->session->set_flashdata("message","Record Not Inserted!");
+                      redirect(site_url('dashboard/page/a22'),'refresh');
+                     }
+                }else{
+                  redirect(site_url('dashboard/page/a22'),'refresh');
+                }
+              }
 
       public function update_department()
               {

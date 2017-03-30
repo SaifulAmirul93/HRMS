@@ -72,7 +72,7 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title"><b>Listing All</b> User</h3>
-              <a href="" name="print_all" id="print_all" class="btn btn-success pull-right"><i class="fa fa-print"></i> Print All</a>
+              <a href="<?=site_url('dashboard/page/a16')?>" name="print_all" id="print_all" class="btn btn-success pull-right"><i class="fa fa-user"></i> Add User</a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -359,9 +359,7 @@
 
 var print_a=document.getElementById('print_all');
 
-print_a.onclick = function(){
-  window.print();
-}
+
 
   $(function () {
     $("#example1").DataTable();

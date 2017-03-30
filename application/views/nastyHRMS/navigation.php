@@ -218,7 +218,8 @@
           </a>
           <ul class="treeview-menu">
             <!--<li><a href="pages/examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>-->
-            <li><a href="<?=site_url('dashboard/page/a14')?>"><i class="fa  fa-chevron-right"></i>Add User</a></li>
+
+            <!-- <li><a href="<?=site_url('dashboard/page/a16')?>"><i class="fa  fa-chevron-right"></i>Add User</a></li> -->
             <li><a href="<?=site_url('dashboard/page/a22')?>"><i class="fa  fa-chevron-right"></i>User List</a></li>
            <!--  <li><a href="<?=site_url('dashboard/page/a15')?>"><i class="fa  fa-chevron-right"></i>List Practical</a></li> -->
            <!--  <li><a href="pages/examples/register.html"><i class="fa fa-circle-o"></i> Register</a></li>
