@@ -41,23 +41,23 @@
   }
 
 </style>
+
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-
-     
+ 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Employees
+        Leave
         
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Tables</a></li>
-        <li class="active">Data tables</li>
+        
+        <li class="active">List Advance</li>
       </ol>
     </section>
 
@@ -70,70 +70,61 @@
 
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title"><b>Listing All</b> Employees</h3>
+              <h3 class="box-title"><b>Advance List</b></h3>
               <a href="" name="print_all" id="print_all" class="btn btn-success pull-right"><i class="fa fa-print"></i> Print All</a>
             </div>
             <!-- /.box-header -->
-
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Employee ID</th >
-                  <th>Full Name</th>
-                  <th>IC No.</th>
-                  <th>Contact No.</th>
-                  <th>Employee Type</th><!-- 
-
-                  <th>Email</th>
-                  <th>Acc Bank No.</th>
-                  <th>Designation</th> -->
+                  <th>Employee Name</th>
+                  <th>Employee ID</th>
+                  <th>Amount Request</th>
+                  <th>Request Date</th>
+                 
+                  <th>Description</th>
+                  <!-- <th>Approval Status</th> -->
                   <th style="width: 15%;" id="exclude_header">Action</th>
+                  
                 </tr>
                 </thead>
                 <tbody>
                 <?php
                       $n = 0; 
-                                
-                      foreach ($arr as $emp): 
+                      if($arr!=null){     
+                      foreach ($arr as $adv){
                       $n++;
                 ?>
                 <tr>
                   <td><?= $n?></td>
-                  <td><?= $emp->emp_id; ?></td>
-                  <td><?= $emp->emp_fullname; ?></td>
-                  <td><?= $emp->ic_No; ?></td>
-                  <td><?= $emp->emp_contactNo; ?></td>
+                  <td><?= $adv->emp_fullname; ?></td>
+                  <td><?= $adv->emp_id; ?></td>
+                  <td>RM <?= $adv->amount_res; ?></td>
+                  <td><?= $adv->adv_date; ?></td>
                   
-                  <td><?= $emp->employeeType; ?></td>
-                  <!-- <td><?= $emp->emp_email; ?></td>
-                  <td><?= $emp->emp_accBank; ?></td>
-                  <td><?= $emp->emp_designation; ?></td> -->
-                  <td id="exclude_column" align="center"><a href="<?= site_url('dashboard/page/h4?view=').$emp->emp_id; ?>" name="c5" title="View Employee">
+                  <td><?= $adv->adv_purpose; ?></td>
+                  <td id="exclude_column"><a href="<?= site_url('dashboard/page/h9?view=').$adv->adv_id; ?>" name="c5" title="View Intern">
                   <button type="button" class="btn btn-info btn-xs" title="View"><i class="fa fa-eye"></i></button></a>
-                  &nbsp;&nbsp;-&nbsp;&nbsp;
-                  <a href="<?= site_url('dashboard/page/c27?edit=').$emp->emp_id; ?>" name="c5" title="Edit Employee">
+                  &nbsp;&nbsp;&nbsp;
+                  <a href="<?= site_url('dashboard/page/c43?edit=').$adv->adv_id; ?>" name="c5" title="Edit advance">
                   <button type="button" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></button></a>
-                  &nbsp;&nbsp;-&nbsp;&nbsp;
-                  <a onclick = "return onDel();" href="<?= site_url('dashboard/page/c26?delete=').$emp->emp_id; ?>" name="c5" title="Delete Employee">
-                  <button type="button" class="btn btn-danger btn-xs"><i class="fa fa-close"></i></button></a>
-                  <br>
-                  <a onclick="window.open('<?= site_url('dashboard/page/c34?print=').$emp->emp_id; ?>');" name="c5" title="Print Employee">
-                  <button type="button" class="btn btn-success btn-xs" title="View"><i class="fa fa-print"></i></button></a>
+                  &nbsp;&nbsp;&nbsp;
+                  <!-- <a href="<?= site_url('dashboard/page/c30?delete=').$adv->adv_id; ?>" name="c5" title="Delete Leave"> -->
+                  <button type="button" class="ROSButton btn btn-danger btn-xs" id="<?= $n.'ros' ?>" name="<?= $n.'ros' ?>"><i class="fa fa-close"></i></button>
+                  <input type="hidden" class="form-control <?= $n.'ros' ?>" value="<?= $adv->adv_id ?>">
+                  <!-- </a> -->
+                  &nbsp;&nbsp;&nbsp;
 
-                  &nbsp;&nbsp;-&nbsp;&nbsp;
-                  <a onclick="window.open('<?= site_url('dashboard/page/a18?view=').$emp->emp_id; ?>');" name="c5" title="Payslip Employee">
-                  <button type="button" class="btn btn-primary btn-xs" title="Payslip Employee"><i class="fa fa-clipboard"></i></button></a>
-
-                  &nbsp;&nbsp;-&nbsp;&nbsp;
-                  <a onclick="window.open('<?= site_url('dashboard/page/a23?view=').$emp->emp_id; ?>');" name="c5" title="Dummy Payslip">
-                  <button type="button" class="btn purple btn-xs" title="Payslip Employee"><i class="fa fa-clipboard"></i></button></a>
+                  <a onclick="window.open('<?= site_url('dashboard/page/c44') ?>');" name="c5" title="Print Advance">
+                  <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-print"></i></button></a>
 
                   </td>  
                 </tr>
                  <?php
-                      endforeach;
+                      }
+                    }
                    ?>
                 </tbody>
                
@@ -370,11 +361,46 @@
 <!-- AdminLTE for demo purposes -->
 <script src="<?= base_url(); ?>/dist/js/demo.js"></script>
 <!-- page script -->
+<script src="<?= base_url(); ?>plugins/bootbox/bootbox.min.js"></script>
 <script>
 
+// $(document).ready(function() {
+    $(".ROSButton").click(function() {
+
+          id = $(this).prop('id');
+          advId = $("."+id).val();
+                
+          bootbox.confirm({
+              message: "Are You Sure?",
+              buttons: {
+                  confirm: {
+                      label: 'Yes',
+                      className: 'btn-success'
+                     
+                  },
+                  cancel: {
+                      label: 'No',
+                      className: 'btn-danger'
+                  }
+              },
+              callback: function (result) {
+                if(result == true){
+                      //bootbox.alert("Deleted!");
+                  $.post('<?= site_url('dashboard/page/c46'); ?>', {adv_id: advId}, function(data) {
+                        
+                        $(window).attr("location", "<?= site_url('dashboard/page/a25'); ?>");
+                        
+                      });
+
+                }
+                
+                  
+              }
+          });
 
 
-
+          });
+// });
 
 
 var print_a=document.getElementById('print_all');
@@ -382,7 +408,6 @@ var print_a=document.getElementById('print_all');
 print_a.onclick = function(){
   window.print();
 }
-
 
   $(function () {
     $("#example1").DataTable();

@@ -262,7 +262,8 @@
                           <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="employeeType">Employee Type</label>
-                                        <select class="form-control" id="employeeType" name="employeeType">
+                                        <select class="form-control" id="employeeType" name="employeeType" onchange="myFunction()">
+                                        <option>--Choose Type--</option>
                                         <option>Permanent</option>
                                         <option>Part Time</option>
                                         <option>Trial</option>
@@ -272,6 +273,17 @@
                               
                         
                         </div>
+                        
+                                    <input type="hidden" class="form-control" id="annual_leave" name="annual_leave">
+                              
+                                    <input type="hidden" class="form-control" id="unpaid_leave" name="unpaid_leave">
+                          
+                                    <input type="hidden" class="form-control" id="medical_leave" name="medical_leave">
+                             
+                                    <input type="hidden" class="form-control" id="maternity" name="maternity">
+                              
+                                    <input type="hidden" class="form-control" id="personal_leave" name="personal_leave">
+                        
                         <div class="row">
                          <div class="col-md-4">
                                     <div class="form-group">
@@ -335,8 +347,9 @@
                
             
 
-             
 
+                                    
+                              
               
 
              
@@ -591,9 +604,77 @@
 <!-- Bootstrap WYSIHTML5 -->
 <script src="<?= base_url(); ?>/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <script>
+
+ function myFunction() {
+                          employeeType= document.getElementById("employeeType").value;
+                         
+
+
+                          if(employeeType=="Permanent")
+                          {
+                                document.getElementById("annual_leave").value = 8;
+                                document.getElementById("medical_leave").value = 14;
+                                document.getElementById("unpaid_leave").value = 8;
+                                document.getElementById("maternity").value = 0;
+                                document.getElementById("personal_leave").value = 0;
+                          }
+                          else if(employeeType=="Trial")
+                          {
+                                document.getElementById("annual_leave").value = 4;
+                                document.getElementById("medical_leave").value = 10;
+                                document.getElementById("unpaid_leave").value = 8;
+                                document.getElementById("maternity").value = 0;
+                                document.getElementById("personal_leave").value = 0;
+                          }
+                          else
+                          {
+                                document.getElementById("annual_leave").value = 0;
+                                document.getElementById("medical_leave").value = 0;
+                                document.getElementById("unpaid_leave").value = 0;
+                                document.getElementById("maternity").value = 0;
+                                document.getElementById("personal_leave").value = 0;
+                          }
+                         // emp_out= document.getElementById("emp_OTOut").value;
+
+
+                         // emp_in = emp_in.split(":");
+                         //  emp_out = emp_out.split(":");
+
+                         //  var startDate = new Date(0, 0, 0, emp_in[0], emp_in[1], 0);
+                         //  var endDate = new Date(0, 0, 0, emp_out[0], emp_out[1], 0);
+                         //  var diff = endDate.getTime() - startDate.getTime();
+
+                         //   var hours = Math.floor(diff / 1000 / 60 / 60);
+                           
+                         //  diff -= hours * 1000 * 60 * 60;
+
+                         //  var minutes = Math.floor(diff / 1000 / 60);
+
+                         //  var total = (hours < 9 ? "0" : "") + hours + ":" + (minutes < 9 ? "0" : "") + minutes;
+                        
+                         //  document.getElementById("emp_OTTotal_hour").value = total;
+
+                         //  //total = total.split(":");
+                         //  hour = new Date("July 21, 1983 "+total);
+                         //  dif =hour.getHours();
+                         //  totalhour=Math.floor(dif / 1000 / 60 / 60);
+
+                         //  salary = document.getElementById("salary").value;
+                          
+                         //  rate = document.querySelector('input[name="emp_OTRate"]:checked').value;
+                          
+                         //  OTRate = (salary/26)/8 * rate; 
+
+                         //  totalOT= OTRate.toFixed(0)*dif;
+                         //  document.getElementById("emp_OTTotal").value = totalOT;
+                       
+  }
+
+
+
+
   $(function () {
-    // Replace the <textarea id="editor1"> with a CKEditor
-    // instance, using default configuration.
+  
     
      //Date picker
     $('#datepicker').datepicker({

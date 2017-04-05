@@ -189,7 +189,29 @@ class dashboard extends CI_Controller
                 $arr['attOut'] = $this->m_attendanceOut->get();
                 $arr['ot'] = $this->m_ot->get();
 
-                $this->load->view('payroll_slip.php',$arr);
+                $this->load->view('payroll_slip',$arr);
+              }
+
+                break;
+
+                case "a23" :
+                   if ($this->input->get('view')) {
+                $empID = $this->input->get('view');
+                //$staffId = $this->my_func->scpro_decrypt($this->input->get('edit'));
+                //echo $staffId;
+                $this->load->database();
+                $this->load->model('m_emp');
+                 $this->load->model('m_ot');
+                 $this->load->model('m_attendance');
+                  $this->load->model('m_attendanceOut');
+                $arr['id'] = $this->input->get('view');
+                //$arr['lvl'] = $this->m_item->getLvl();
+                $arr['arr'] = $this->m_emp->getAtt($empID);
+                $arr['attIn'] = $this->m_attendance->get();
+                $arr['attOut'] = $this->m_attendanceOut->get();
+                $arr['ot'] = $this->m_ot->get();
+
+                $this->load->view('dummy_slip',$arr);
               }
 
                 break;
@@ -242,12 +264,33 @@ class dashboard extends CI_Controller
 
                 break;
 
+            case "c46":
+            // delete
+                if ($this->input->post('adv_id')) {
+                $advID = $this->input->post('adv_id');
+                $this->load->database();
+                $this->load->model('m_advance');
 
+                $this->m_advance->delete($advID);
+                //redirect(site_url('dashboard/page/a25'),'refresh');
+                break;
+                }
            case 'a6':
                //add mileage
                $this->load->view('nastyHRMS/navigation');
                $this->load->view('nastyHRMS/header');
                $this->load->view('add_mileage');
+               
+               break;
+
+               case 'a24':
+               //add mileage
+               $this->load->database();
+                $this->load->model('m_emp');
+                $arr['emp'] = $this->m_emp->get();  
+               $this->load->view('nastyHRMS/navigation');
+               $this->load->view('nastyHRMS/header');
+               $this->load->view('add_advance',$arr);
                
                break;
 
@@ -516,16 +559,14 @@ class dashboard extends CI_Controller
                 //$data['title'] = '<i class="fa fa-file-text"></i> User Edit';
                 if ($this->input->get('edit')) {
                 $empID = $this->input->get('edit');
-                //$staffId = $this->my_func->scpro_decrypt($this->input->get('edit'));
-                //echo $staffId;
+                
                 $this->load->database();
                 $this->load->model('m_emp');
                 $arr['id'] = $this->input->get('edit');
                 $arr['lvl'] = $this->m_emp->getLvl();
                 $arr['arr'] = $this->m_emp->getAll($empID);
 
-                /*$data['display'] = $this->load->view($this->parent_page.'/editStaff' , $arr , true);
-                $this->_show('display' , $data , $key); */
+            
 
                 }       
                 //$this->_show('display', $key);
@@ -593,7 +634,7 @@ class dashboard extends CI_Controller
                 $arr['emp'] = $this->m_emp->get();
                 $this->load->view('nastyHRMS/navigation');
                 $this->load->view('nastyHRMS/header');
-                $this->load->view('add_otclaim.php',$arr);
+                $this->load->view('add_otclaim',$arr);
                 break; 
 
             case 'a9':
@@ -711,9 +752,20 @@ class dashboard extends CI_Controller
 
                 $this->load->view('nastyHRMS/navigation');
                 $this->load->view('nastyHRMS/header');
-                $this->load->view('list_leave.php',$arr);
+                $this->load->view('list_leave',$arr);
                 break;
 
+                 case 'a25':
+            //view leave
+                $this->load->database();
+                $this->load->model('m_advance');
+
+                $arr['arr'] = $this->m_advance->getAll();
+
+                $this->load->view('nastyHRMS/navigation');
+                $this->load->view('nastyHRMS/header');
+                $this->load->view('list_advance',$arr);
+                break;
             case "c30":
             // delete
                 if ($this->input->get('delete')) {
@@ -794,7 +846,31 @@ class dashboard extends CI_Controller
                 //$this->_show('display', $key);
                 $this->load->view('nastyHRMS/navigation');
                 $this->load->view('nastyHRMS/header');
-                $this->load->view('view_leave.php',$arr);
+                $this->load->view('view_leave',$arr);
+
+                break;
+
+                case "h9" :
+            //view 1 by 1 leave
+                //$data['title'] = '<i class="fa fa-file-text"></i> User Edit';
+                if ($this->input->get('view')) {
+                $empID = $this->input->get('view');
+                //$staffId = $this->my_func->scpro_decrypt($this->input->get('edit'));
+                //echo $staffId;
+                $this->load->database();
+                $this->load->model('m_advance');
+                $arr['id'] = $this->input->get('view');
+                $arr['lvl'] = $this->m_advance->getLvl();
+                $arr['arr'] = $this->m_advance->getAll($empID);
+
+                /*$data['display'] = $this->load->view($this->parent_page.'/editStaff' , $arr , true);
+                $this->_show('display' , $data , $key); */
+
+                }       
+                //$this->_show('display', $key);
+                $this->load->view('nastyHRMS/navigation');
+                $this->load->view('nastyHRMS/header');
+                $this->load->view('view_advance',$arr);
 
                 break;
 
@@ -923,6 +999,45 @@ class dashboard extends CI_Controller
                 $this->load->view('edit_user',$arr);
                 break;
 
+
+                case "c43" :
+            //edit
+                
+                if ($this->input->get('edit')) {
+                $userID = $this->input->get('edit');
+           
+                $this->load->database();
+                $this->load->model('m_advance');
+                $arr['id'] = $this->input->get('edit');
+                $arr['lvl'] = $this->m_advance->getLvl();
+                $arr['arr'] = $this->m_advance->getAll($userID);
+
+               
+                $this->load->view('nastyHRMS/navigation');
+                $this->load->view('nastyHRMS/header');
+                $this->load->view('edit_advance',$arr);
+              }
+                break;
+
+                  case "c44" :
+            //edit
+                
+                // if ($this->input->get('edit')) {
+                // $userID = $this->input->get('edit');
+           
+                // $this->load->database();
+                // $this->load->model('m_advance');
+                // $arr['id'] = $this->input->get('edit');
+                // $arr['lvl'] = $this->m_advance->getLvl();
+                // $arr['arr'] = $this->m_advance->getAll($userID);
+
+               
+                // $this->load->view('nastyHRMS/navigation');
+                // $this->load->view('nastyHRMS/header');
+                $this->load->view('advance-form');
+              // }
+                break;
+
             case "h7" :
             //view 1 by 1 practical
                 //$data['title'] = '<i class="fa fa-file-text"></i> User Edit';
@@ -943,7 +1058,7 @@ class dashboard extends CI_Controller
                 //$this->_show('display', $key);
                 $this->load->view('nastyHRMS/navigation');
                 $this->load->view('nastyHRMS/header');
-                $this->load->view('view_practical.php',$arr);
+                $this->load->view('view_practical',$arr);
 
                 break;
                 
@@ -1119,6 +1234,45 @@ class dashboard extends CI_Controller
             }
         }
 
+          public function add_advance()
+        {
+            if ($this->input->post()) {
+                $arr = $this->input->post(); 
+
+                /*$data = array(
+                'deptName' => $this->input->post('deptName'),
+                'dept_description' => $this->input->post('dept_description')
+                );*/
+
+                $this->load->database();
+                $this->load->model('m_advance');
+                //$this->load->library('my_func');
+                /*foreach ($arr as $key => $value) {
+                    if ($value != null) {
+                        if ($key == 'pass') {
+                            $value = $this->my_func->scpro_encrypt($value);
+                        }
+                        $arr2['us_'.$key] = $value;                     
+                    }
+                }*/
+                 $arr2 = array(
+                            "ep_id" => $arr['emp_id'],
+                            "amount_res" => $arr['amount_res'],                            
+                            "adv_date" => $arr['adv_date'],
+                            "adv_purpose" => $arr['adv_purpose']
+                           
+                        );
+
+                $result = $this->m_advance->insert($arr2);
+                 
+
+                redirect(site_url('dashboard/page/a25'),'refresh');
+            }else{
+                redirect(site_url('dashboard/page/a25'),'refresh');
+            }
+        }
+
+
         public function getEmpId()
               {
                   $emp_name = $this->input->post('key');
@@ -1132,6 +1286,22 @@ class dashboard extends CI_Controller
                   
                   //$temp['num'] = $this->input->post('num');
                   $this->load->view("getAjaxEmpId", $temp);
+                  
+              }
+
+                public function getAjaxEmp()
+              {
+                  $emp_name = $this->input->post('key');
+                  
+                
+                 
+                  $this->load->database();
+                  $this->load->model('m_emp');
+                  $temp['lvl'] = $this->m_emp->getLvl();
+                  $temp['emp'] = $this->m_emp->getSalary($emp_name);
+                  
+                  //$temp['num'] = $this->input->post('num');
+                  $this->load->view("getAjaxEmp", $temp);
                   
               }
                public function getEId()
@@ -1369,6 +1539,39 @@ class dashboard extends CI_Controller
           redirect(site_url('dashboard/page/a5'),'refresh');
         }
       }
+
+       public function edit_advance(){
+          if ($this->input->post()) {
+          $arr = $this->input->post();          
+          $this->load->database();
+          $this->load->model('m_advance');
+          //$this->load->library('my_func');
+          
+           echo "<script>alert($id);</script>";
+                   $arr2 = array(
+                            "ep_id" => $arr['emp_id'],
+                            "amount_res" => $arr['amount_res'],                            
+                            "adv_date" => $arr['adv_date'],
+                            "adv_purpose" => $arr['adv_purpose']
+                           
+                        );
+                           
+          $result = $this->m_advance->update($arr2 , $id);
+                    if($result != null){
+                     echo "<script>alert('Record Is Updated');</script>";
+                    redirect(site_url('dashboard/page/a25'),'refresh');
+                    }
+                else{
+                      echo "<script>alert('Record Is Not Updated');</script>";
+                      redirect(site_url('dashboard/page/a25'),'refresh');
+                     }
+          }else{
+          redirect(site_url('dashboard/page/a25'),'refresh');
+        }
+          
+        
+        }
+      
 
 
      public function add_otclaim(){

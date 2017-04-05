@@ -72,7 +72,35 @@
                           Staff Info
                      </div>
                       <div class="panel-body">
+                                <div class="row">
+                                <div class="col-md-4">
                                 <img src="<?php echo base_url();?>/asset/default-profile.png" class="img-responsive" width="200" height="200">
+                                </div>
+                                <div class="col-md-2">
+                                        <div class="alert alert-success">
+                                        Total Annual Leave
+                                        <h1><?= $arr->annual_leave;?></h1>
+                                        </div>
+                                </div>
+                                <div class="col-md-2">
+                                        <div class="alert alert-warning">
+                                        Total Medical Leave
+                                        <h1><?= $arr->medical_leave;?></h1>
+                                        </div>
+                                </div>
+                                <div class="col-md-2">
+                                        <div class="alert alert-danger">
+                                        Total Unpaid Leave
+                                        <h1><?= $arr->unpaid_leave;?></h1>
+                                        </div>
+                                </div>
+                                <div class="col-md-2">
+                                        <div class="alert alert-info">
+                                        Total Personal Leave
+                                        <h1><?= $arr->personal_leave;?></h1>
+                                        </div>
+                                </div>
+                                </div>
                                 <div class="clearfix" style="height: 20px"></div>
                             <!--     <div class="row">
                                 <div class="form-group">
