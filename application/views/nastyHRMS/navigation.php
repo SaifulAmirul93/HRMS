@@ -108,6 +108,22 @@
           </ul>
      </li>
 
+
+    <li class="treeview">
+          <a href="#">
+            <i class="fa fa-life-ring"></i> <span>Holiday</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <!--<li><a href="pages/examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>-->
+            <li><a href="<?= site_url('dashboard/page/a61') ?>"><i class="fa  fa-chevron-right"></i>Add Holiday</a></li>
+            <li><a href="<?= site_url('dashboard/page/a7') ?>"><i class="fa  fa-chevron-right"></i>Calendar</a></li>
+         
+          </ul>
+     </li>
+
      <li class="treeview">
           <a href="#">
             <i class="fa fa-car"></i> <span>Mileage</span>
@@ -119,12 +135,7 @@
             <!--<li><a href="pages/examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>-->
             <li><a href="<?= site_url('dashboard/page/a6') ?>"><i class="fa  fa-chevron-right"></i>Add Mileage</a></li>
             <li><a href="<?= site_url('dashboard/page/a7') ?>"><i class="fa  fa-chevron-right"></i>List Mileage</a></li>
-           <!--  <li><a href="pages/examples/register.html"><i class="fa fa-circle-o"></i> Register</a></li>
-            <li><a href="pages/examples/lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li> -->
-            <!--<li><a href="pages/examples/404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li>
-            <li><a href="pages/examples/500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li>
-            <li><a href="pages/examples/blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li>
-            <li><a href="pages/examples/pace.html"><i class="fa fa-circle-o"></i> Pace Page</a></li>-->
+         
           </ul>
      </li>
 
@@ -252,26 +263,7 @@
      <!-- </li> -->
      
 
-    <!--  <li class="treeview">
-          <a href="#">
-            <i class="fa fa-user-secret"></i> <span>Payroll</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <!--<li><a href="pages/examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>-->
-            <!-- <li><a href="<?=site_url('dashboard/page/a100')?>"><i class="fa  fa-chevron-right"></i>Add Payroll</a></li>
-            <li><a href="<?=site_url('dashboard/page/a17')?>"><i class="fa  fa-chevron-right"></i>List Payroll</a></li> -->
-           <!--  <li><a href="pages/examples/register.html"><i class="fa fa-circle-o"></i> Register</a></li>
-            <li><a href="pages/examples/lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li> -->
-            <!--<li><a href="pages/examples/404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li>
-            <li><a href="pages/examples/500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li>
-            <li><a href="pages/examples/blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li>
-            <li><a href="pages/examples/pace.html"><i class="fa fa-circle-o"></i> Pace Page</a></li>-->
-          </ul>
-     </li> -->
-     
+
       
     </section>
     <!-- /.sidebar -->

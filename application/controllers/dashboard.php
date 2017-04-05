@@ -283,6 +283,14 @@ class dashboard extends CI_Controller
                
                break;
 
+                case 'a61':
+               //add mileage
+               $this->load->view('nastyHRMS/navigation');
+               $this->load->view('nastyHRMS/header');
+               $this->load->view('add_holiday');
+               
+               break;
+
                case 'a24':
                //add mileage
                $this->load->database();

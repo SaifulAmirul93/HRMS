@@ -3,140 +3,161 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Data Tables</title>
+  <title>AdminLTE 2 | Editors</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="<?php echo base_url();?>/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="<?= base_url(); ?>bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="<?php echo base_url();?>/plugins/datatables/dataTables.bootstrap.css">
+    <!-- bootstrap datepicker -->
+  <!-- <link rel="stylesheet" href="<?= base_url(); ?>plugins/datepicker/datepicker3.css"> -->
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?php echo base_url();?>/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="<?= base_url(); ?>dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="<?php echo base_url();?>/dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="<?= base_url(); ?>dist/css/skins/_all-skins.min.css">
+  <!-- bootstrap wysihtml5 - text editor -->
+  <!-- <link rel="stylesheet" href="<?= base_url(); ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"> -->
 
+  <link href="<?= base_url(); ?>plugins/bootstrap-colorpicker-plus-master/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+
+  <link href="<?= base_url(); ?>plugins/bootstrap-colorpicker-plus-master/css/bootstrap-colorpicker-plus.css" rel="stylesheet">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+      <style type="text/css">
+        .color-fill-icon{display:inline-block;width:16px;height:16px;border:1px solid #000;background-color:#fff;margin: 2px;}
+        .dropdown-color-fill-icon{position:relative;float:left;margin-left:0;margin-right: 0}
+ 
+    </style>
+
 </head>
-<style type="text/css">
-  @media print{
-
-    #exclude_column{
-      display:none;
-
-    }
-
-    #exclude_header{
-      display:none;
-    }
-  }
-
-</style>
-
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
-
- 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Advance
-        
+        Holiday
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         
-        <li class="active">List Advance</li>
+        <li class="active">Apply Holiday</li>
       </ol>
     </section>
-
+      
     <!-- Main content -->
     <section class="content">
+
       <div class="row">
-        <div class="col-xs-12">
-          
+      
+          <div class="col-xs-12">
           <!-- /.box -->
 
-          <div class="box">
-            <div class="box-header">
-              <h3 class="box-title"><b>Advance List</b></h3>
-              <a href="" name="print_all" id="print_all" class="btn btn-success pull-right"><i class="fa fa-print"></i> Print All</a>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Employee Name</th>
-                  <th>Employee ID</th>
-                  <th>Amount Request</th>
-                  <th>Request Date</th>
-                 
-                  <th>Description</th>
-                  <!-- <th>Approval Status</th> -->
-                  <th style="width: 15%;" id="exclude_header">Action</th>
-                  
-                </tr>
-                </thead>
-                <tbody>
-                <?php
-                      $n = 0; 
-                      if($arr!=null){     
-                      foreach ($arr as $adv){
-                      $n++;
-                ?>
-                <tr>
-                  <td><?= $n?></td>
-                  <td><?= $adv->emp_fullname; ?></td>
-                  <td><?= $adv->emp_id; ?></td>
-                  <td>RM <?= $adv->amount_res; ?></td>
-                  <td><?= $adv->adv_date; ?></td>
-                  
-                  <td><?= $adv->adv_purpose; ?></td>
-                  <td id="exclude_column"><a href="<?= site_url('dashboard/page/h9?view=').$adv->adv_id; ?>" name="c5" title="View Intern">
-                  <button type="button" class="btn btn-info btn-xs" title="View"><i class="fa fa-eye"></i></button></a>
-                  &nbsp;&nbsp;&nbsp;
-                  <a href="<?= site_url('dashboard/page/c43?edit=').$adv->adv_id; ?>" name="c5" title="Edit advance">
-                  <button type="button" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></button></a>
-                  &nbsp;&nbsp;&nbsp;
-                  <!-- <a href="<?= site_url('dashboard/page/c30?delete=').$adv->adv_id; ?>" name="c5" title="Delete Leave"> -->
-                  <button type="button" class="ROSButton btn btn-danger btn-xs" id="<?= $n.'ros' ?>" name="<?= $n.'ros' ?>"><i class="fa fa-close"></i></button>
-                  <input type="hidden" class="form-control <?= $n.'ros' ?>" value="<?= $adv->adv_id ?>">
-                  <!-- </a> -->
-                  &nbsp;&nbsp;&nbsp;
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title"><b>Add Holiday</b></h3>
 
-                  <a onclick="window.open('<?= site_url('dashboard/page/c44') ?>');" name="c5" title="Print Advance">
-                  <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-print"></i></button></a>
+              </div>
+    <div class="col-lg-12">
+              <div class="row">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                          Holiday Info
+                     </div>
+                      <form role="form" method="post" action="<?= site_url('dashboard/add_advance'); ?>">
+                      <div class="panel-body">
+                         
 
-                  </td>  
-                </tr>
-                 <?php
-                      }
-                    }
-                   ?>
-                </tbody>
-               
-              </table>
-            </div>
-            <!-- /.box-body -->
+                   
+                       
+
+                           <div class="row">
+                               <div class="col-md-4">
+                                    <div class="form-group">
+                                      <label for="ic_No">Date :</label>
+                                      
+                                     <input class="form-control input-sm" type="text" name="emp_designation" id="emp_designation">
+                                      
+                                     </div>
+                                  </div>  
+                            </div>
+                            <div class="row"> 
+                                  <div class="col-md-2">
+                                    <div class="form-group">
+
+                                      <label for="ic_No">Label Color :</label>
+                                      
+                                     <input class="form-control input-sm" type="text" id="holiday_color" value="#fff">
+                                     
+                                      
+                                     </div>
+                                  </div>  
+
+
+                           </div>    
+
+                            
+                
+                               
+                           <div class="row">
+                                    <div class="col-md-8">
+                                          <label for="ic_No">Holiday Description :</label>
+                                           <textarea id="adv_purpose" name="adv_purpose" class="textarea" placeholder="Place some text here" style="width: 100%; height: 100%; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                    </div>
+                                </div>
+
+
+
+
+                           <div class="row">
+                              <div class="col-md-4">
+
+                           <button type="submit" name="search" id="search-btn" class="btn btn-success">
+                              <i class="fa fa-send"></i>
+                            Apply           
+                            </button>
+                            </div>
+                            </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+                  
+                </div>
+                
           </div>
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
+        
+        <!-- /.col-->
       </div>
-      <!-- /.row -->
+      <!-- ./row -->
     </section>
     <!-- /.content -->
   </div>
@@ -346,80 +367,44 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 2.2.3 -->
-<script src="<?= base_url(); ?>/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="<?= base_url(); ?>plugins/jQuery/jquery-2.2.3.min.js"></script>
+
+<script src="<?= base_url(); ?>plugins/bootstrap-colorpicker-plus-master/js/bootstrap-colorpicker.min.js"></script>
+<script src="<?= base_url(); ?>plugins/bootstrap-colorpicker-plus-master/js/bootstrap-colorpicker-plus.js"></script>
 <!-- Bootstrap 3.3.6 -->
-<script src="<?= base_url(); ?>/bootstrap/js/bootstrap.min.js"></script>
-<!-- DataTables -->
-<script src="<?= base_url(); ?>/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="<?= base_url(); ?>/plugins/datatables/dataTables.bootstrap.min.js"></script>
-<!-- SlimScroll -->
-<script src="<?= base_url(); ?>/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="<?= base_url(); ?>bootstrap/js/bootstrap.min.js"></script>
 <!-- FastClick -->
-<script src="<?= base_url(); ?>/plugins/fastclick/fastclick.js"></script>
+<script src="<?= base_url(); ?>plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
-<script src="<?= base_url(); ?>/dist/js/app.min.js"></script>
+<script src="<?= base_url(); ?>dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="<?= base_url(); ?>/dist/js/demo.js"></script>
-<!-- page script -->
-<script src="<?= base_url(); ?>plugins/bootbox/bootbox.min.js"></script>
+<script src="<?= base_url(); ?>dist/js/demo.js"></script>
+<!-- bootstrap datepicker -->
+<!-- <script src="<?= base_url(); ?>plugins/datepicker/bootstrap-datepicker.js"></script> -->
+<!-- CK Editor -->
+<!-- <script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script> -->
+<!-- Bootstrap WYSIHTML5 -->
+<!-- <script src="<?= base_url(); ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script> -->
+
+
 <script>
 
-// $(document).ready(function() {
-    $(".ROSButton").click(function() {
-
-          id = $(this).prop('id');
-          advId = $("."+id).val();
-                
-          bootbox.confirm({
-              message: "Are You Sure?",
-              buttons: {
-                  confirm: {
-                      label: 'Yes',
-                      className: 'btn-success'
-                     
-                  },
-                  cancel: {
-                      label: 'No',
-                      className: 'btn-danger'
-                  }
-              },
-              callback: function (result) {
-                if(result == true){
-                      //bootbox.alert("Deleted!");
-                  $.post('<?= site_url('dashboard/page/c46'); ?>', {adv_id: advId}, function(data) {
-                        
-                        $(window).attr("location", "<?= site_url('dashboard/page/a25'); ?>");
-                        
-                      });
-
-                }
-                
-                  
-              }
-          });
-
-
-          });
-// });
-
-
-var print_a=document.getElementById('print_all');
-
-print_a.onclick = function(){
-  window.print();
-}
 
   $(function () {
-    $("#example1").DataTable();
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
-    });
-  });
+      var demo1 = $('#holiday_color');
+
+       demo1.colorpickerplus();
+       demo1.on('changeColor', function(e,color){
+          
+            if(color==null){
+              $(this).val('transparent').css('background-color', '#b59972');//tranparent
+              }else{
+            $(this).val(color).css('background-color', color);
+          }
+      });
+    //bootstrap WYSIHTML5 - text editor
+  //   $(".textarea").wysihtml5();
+   });
 </script>
 </body>
 </html>
