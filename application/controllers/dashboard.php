@@ -180,11 +180,13 @@ class dashboard extends CI_Controller
                 $this->load->database();
                 $this->load->model('m_emp');
                  $this->load->model('m_ot');
+                 $this->load->model('m_advance');
                  $this->load->model('m_attendance');
                   $this->load->model('m_attendanceOut');
                 $arr['id'] = $this->input->get('view');
                 //$arr['lvl'] = $this->m_item->getLvl();
-                $arr['arr'] = $this->m_emp->getAtt($empID);
+                $arr['arr'] = $this->m_emp->get($empID);
+                $arr['adv'] = $this->m_advance->getAdvance($empID);
                 $arr['attIn'] = $this->m_attendance->get();
                 $arr['attOut'] = $this->m_attendanceOut->get();
                 $arr['ot'] = $this->m_ot->get();
@@ -668,7 +670,16 @@ class dashboard extends CI_Controller
                 redirect(site_url('dashboard/page/a8'),'refresh');
                 break;
             }
+            case 'd1' :
+            //add deduction
 
+                $this->load->database();
+                $this->load->model('m_emp');
+                $arr['emp'] = $this->m_emp->get();
+                $this->load->view('nastyHRMS/navigation');
+                $this->load->view('nastyHRMS/header');
+                $this->load->view('add_deduction',$arr);
+                break; 
             case "c29" :
             //edit
                 //$data['title'] = '<i class="fa fa-file-text"></i> User Edit';
@@ -1550,12 +1561,13 @@ class dashboard extends CI_Controller
 
        public function edit_advance(){
           if ($this->input->post()) {
-          $arr = $this->input->post();          
+          $arr = $this->input->post(); 
+          $id = $this->input->post('id');         
           $this->load->database();
           $this->load->model('m_advance');
           //$this->load->library('my_func');
           
-           echo "<script>alert($id);</script>";
+           
                    $arr2 = array(
                             "ep_id" => $arr['emp_id'],
                             "amount_res" => $arr['amount_res'],                            

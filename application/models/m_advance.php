@@ -54,6 +54,15 @@
 	    	$result = array_shift($result);
 	    	return $result->emp_fullname;
 	    }
+	    public function getAdvance($id = null)
+	    {
+	    	$this->db->select('amount_res');
+	    	$this->db->from(self::TABLE_NAME);
+	    	$this->db->where('ep_id', $id);
+	    	$result = $this->db->get()->result();
+	    	$result = array_shift($result);
+	    	return $result;
+	    }
 	    public function getLvl(){
             $this->db->select("*");
             $this->db->from('department');

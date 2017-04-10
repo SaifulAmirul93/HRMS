@@ -63,7 +63,8 @@ $endDate=$year."-".$month."-"."23";
 $epf = $salary * 0.08;
 $socso = ( $salary * 0.005 ) -0.25;
 $totalOT=0;
-$advance=0.0;
+$advance=number_format((float) $adv->amount_res, 2, '.', '');
+echo "amount".$advance;
 foreach ($ot as $key) {
   if(($key->emp_id == $arr->emp_id)&&(($key->emp_OTDate >= $startDate)&&($arr->emp_OTDate <= $endDate))){
    $ototal = $key->emp_OTTotal;
@@ -71,12 +72,15 @@ foreach ($ot as $key) {
    $totalOT=$totalOT + $ototal;
    }
 }
-
-if($arr->emp_deptId == 17){
-
-  $advance=200.00;  
-
+if ($adv->amount_res==null){
+  $advance=0.00;
 }
+
+// if($arr->emp_deptId == 17){
+
+//   $advance=200.00;  
+
+// }
 
 
 if(($arr->employeeType == "Trial") || ($arr->employeeType == "Part Time") ){
@@ -425,7 +429,7 @@ $net_pay= $gross_pay - $sub_total;
 <script>
 
     
-   window.print();
+   //window.print();
 
   
   </script>

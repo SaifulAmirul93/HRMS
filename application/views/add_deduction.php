@@ -3,160 +3,167 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Editors</title>
+  
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="<?= base_url(); ?>bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="<?php echo base_url();?>/bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- bootstrap datepicker -->
-  <!-- <link rel="stylesheet" href="<?= base_url(); ?>plugins/datepicker/datepicker3.css"> -->
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?= base_url(); ?>dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="<?php echo base_url();?>/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="<?= base_url(); ?>dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="<?php echo base_url();?>/dist/css/skins/_all-skins.min.css">
   <!-- bootstrap wysihtml5 - text editor -->
-  <!-- <link rel="stylesheet" href="<?= base_url(); ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"> -->
+  <link rel="stylesheet" href="<?php echo base_url();?>/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
-  <link href="<?= base_url(); ?>plugins/bootstrap-colorpicker-plus-master/css/bootstrap-colorpicker.min.css" rel="stylesheet">
-
-  <link href="<?= base_url(); ?>plugins/bootstrap-colorpicker-plus-master/css/bootstrap-colorpicker-plus.css" rel="stylesheet">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-      <style type="text/css">
-        .color-fill-icon{display:inline-block;width:16px;height:16px;border:1px solid #000;background-color:#fff;margin: 2px;}
-        .dropdown-color-fill-icon{position:relative;float:left;margin-left:0;margin-right: 0}
- 
-    </style>
-
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
+    <!-- /.sidebar -->
+  </aside>
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Holiday
+        Overtime
+        
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        
-        <li class="active">Apply Holiday</li>
+        <li><a href="#">Deduction</a></li>
+        <li class="active">Add Deduction</li>
       </ol>
     </section>
-      
+
     <!-- Main content -->
     <section class="content">
-
       <div class="row">
-      
-          <div class="col-xs-12">
+      <div class="col-xs-12">
+          
           <!-- /.box -->
 
-              <div class="box">
-                <div class="box-header">
-                  <h3 class="box-title"><b>Add Holiday</b></h3>
-
-              </div>
-    <div class="col-lg-12">
-              <div class="row">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                          Holiday Info
-                     </div>
-                      <form role="form" method="post" action="<?= site_url('dashboard/add_holiday'); ?>">
-                      <div class="panel-body">
-                         
-
-                   
-                       
-
-                           <div class="row">
-                               <div class="col-md-4">
-                                    <div class="form-group">
-                                      <label for="ic_No">Date :</label>
-                                      
-                                     <input class="form-control input-sm" type="date" name="emp_designation" id="emp_designation">
-                                      
-                                     </div>
-                                  </div>  
-                            </div>
-                            <div class="row"> 
-                                  <div class="col-md-2">
-                                    <div class="form-group">
-
-                                      <label for="ic_No">Label Color :</label>
-                                      
-                                     <input class="form-control input-sm" type="text" id="holiday_color" value="#fff">
-                                     
-                                      
-                                     </div>
-                                  </div>  
-
-
-                           </div>    
-
-                            
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title"><b>Add Deduction</b>
                 
-                               
-                           <div class="row">
-                                    <div class="col-md-8">
-                                          <label for="ic_No">Holiday Description :</label>
-                                           <textarea id="adv_purpose" name="adv_purpose" class="textarea" placeholder="Place some text here" style="width: 100%; height: 100%; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+              </h3>
+              
+
+
+              <!-- tools box -->
+              
+              <div class="pull-right box-tools">
+                <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                  <i class="fa fa-minus"></i></button>
+                <button type="button" class="btn btn-default btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove">
+                  <i class="fa fa-times"></i></button>
+              </div>
+              <!-- /. tools -->
+            </div>
+
+
+            <div id="salaryDiv">
+             <input type="hidden" name="salary" id="salary" class="form-control">
+           </div>
+            <form action="<?= site_url('dashboard/add_otclaim'); ?>" method="post">
+            <!-- /.box-header -->
+            <div class="col-lg-12">
+                  <div class="row">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                              Employee Info
+                         </div>
+                          <div class="panel-body">
+                              <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                          <label for="ic_No">Employee Name :</label>
+                                          
+                                           <input list="browsers" id="emp_name" name="emp_name" class="form-control">
+                                              <datalist id="browsers">
+                                                <option value="--Choose Staff">
+                                                  <?php foreach ($emp as $key) {
+                                                                ?>
+                                                  <option value="<?= $key->emp_fullname; ?>" ><?= $key->emp_id; ?></option>
+                                                                                                      
+                                                                                                 
+                                                 <?php
+                                                  } ?>
+                                                
+
+
+                                              </datalist>
+                                          
+                                         </div>
+                                      </div>
+                                      <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="ic_No">Employee ID :</label>
+                                            <div id="empDiv">
+                                            <input class="form-control" id="emp_id" name="emp_id" type="text">
+                                            </div>
+                                        </div>
+                                      </div>
+
+                              </div>
+                              <div class="row">
+                                    <div class="col-md-4">
+                                              <div class="form-group">
+                                                  <label for="ic_No">Date :</label>
+                                                  <input class="form-control input-sm" type="text" name="adv_date" id="adv_date" value="<?= date("Y-m-d"); ?>">
+                                              </div>
+                                    </div>
+                                    
+
+                              </div>
+                              <div class="row">
+                                    <div class="col-md-4">
+                                    <label for="ic_No">Amount of Deduction (RM) :</label>
+                                    <input class="form-control input-sm" type="text" name="amount_res" id="amount_res">
+                                    </div>
+                              </div>
+                              
+                              
+                             
+                               <div class="clear" style="height:10px;"></div>
+                               <div class="row">
+                                    <div class="col-md-12">
+                                          <label for="ic_No">Reason :</label>
+                                           <textarea id="emp_OTDes" name="emp_OTDes" class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                                     </div>
                                 </div>
+                                <div class="row">
+                                  <div class="col-md-4">
+                                      <input class="btn btn-primary" type="submit" value="Add">
+                                  </div>
+                                </div>
 
-
-
-
-                           <div class="row">
-                              <div class="col-md-4">
-
-                           <button type="submit" name="search" id="search-btn" class="btn btn-success">
-                              <i class="fa fa-plus"></i>
-                            Add           
-                            </button>
-                            </div>
-                            </div>
-                      </div>
-                    </form>
+                          </div>
+                    </div>
                   </div>
-                </div>
-             </div>
+              </div>
 
+               </form>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
-                  
-                </div>
-                
-          </div>
+           
+     
         
         <!-- /.col-->
+        </div>
       </div>
+     
       <!-- ./row -->
     </section>
     <!-- /.content -->
@@ -367,44 +374,94 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 2.2.3 -->
-<script src="<?= base_url(); ?>plugins/jQuery/jquery-2.2.3.min.js"></script>
-
-<script src="<?= base_url(); ?>plugins/bootstrap-colorpicker-plus-master/js/bootstrap-colorpicker.min.js"></script>
-<script src="<?= base_url(); ?>plugins/bootstrap-colorpicker-plus-master/js/bootstrap-colorpicker-plus.js"></script>
+<script src="<?= base_url(); ?>/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
-<script src="<?= base_url(); ?>bootstrap/js/bootstrap.min.js"></script>
+<script src="<?= base_url(); ?>/bootstrap/js/bootstrap.min.js"></script>
 <!-- FastClick -->
-<script src="<?= base_url(); ?>plugins/fastclick/fastclick.js"></script>
+<script src="<?= base_url(); ?>/plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
-<script src="<?= base_url(); ?>dist/js/app.min.js"></script>
+<script src="<?= base_url(); ?>/dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="<?= base_url(); ?>dist/js/demo.js"></script>
-<!-- bootstrap datepicker -->
-<!-- <script src="<?= base_url(); ?>plugins/datepicker/bootstrap-datepicker.js"></script> -->
+<script src="<?= base_url(); ?>/dist/js/demo.js"></script>
 <!-- CK Editor -->
-<!-- <script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script> -->
+<script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
 <!-- Bootstrap WYSIHTML5 -->
-<!-- <script src="<?= base_url(); ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script> -->
+<script src="<?= base_url(); ?>/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 
 
-<script>
+<script type="text/javascript">
+                     function myFunction() {
+                         emp_in= document.getElementById("emp_OTIn").value;
+                         emp_out= document.getElementById("emp_OTOut").value;
 
+
+                         emp_in = emp_in.split(":");
+                          emp_out = emp_out.split(":");
+
+                          var startDate = new Date(0, 0, 0, emp_in[0], emp_in[1], 0);
+                          var endDate = new Date(0, 0, 0, emp_out[0], emp_out[1], 0);
+                          var diff = endDate.getTime() - startDate.getTime();
+
+                           var hours = Math.floor(diff / 1000 / 60 / 60);
+                           
+                          diff -= hours * 1000 * 60 * 60;
+
+                          var minutes = Math.floor(diff / 1000 / 60);
+
+                          var total = (hours < 9 ? "0" : "") + hours + ":" + (minutes < 9 ? "0" : "") + minutes;
+                        
+                          document.getElementById("emp_OTTotal_hour").value = total;
+
+                          //total = total.split(":");
+                          hour = new Date("July 21, 1983 "+total);
+                          dif =hour.getHours();
+                          totalhour=Math.floor(dif / 1000 / 60 / 60);
+
+                          salary = document.getElementById("salary").value;
+                          
+                          rate = document.querySelector('input[name="emp_OTRate"]:checked').value;
+                          
+                          OTRate = (salary/26)/8 * rate; 
+
+                          totalOT= OTRate.toFixed(0)*dif;
+                          document.getElementById("emp_OTTotal").value = totalOT;
+                       
+                      }
+
+
+
+
+$('#emp_name').change(function() {
+            temp = $(this).val();
+            //$.when($('#loadingText').show()).then(function(){
+                $.post('<?= site_url('dashboard/getEmpId'); ?>', {key : temp}, function(data) {
+                  //$('#empDiv').html(data)
+                       
+                    
+                $('#salaryDiv').html(data)
+                       
+                    
+                  
+                });
+
+
+                $.post('<?= site_url('dashboard/getEId'); ?>', {key : temp}, function(data) {
+                  $('#empDiv').html(data)
+                  });
+            //});
+        });
+
+   
 
   $(function () {
-      var demo1 = $('#holiday_color');
-
-       demo1.colorpickerplus();
-       demo1.on('changeColor', function(e,color){
-          
-            if(color==null){
-              $(this).val('transparent').css('background-color', '#b59972');//tranparent
-              }else{
-            $(this).val(color).css('background-color', color);
-          }
-      });
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    
     //bootstrap WYSIHTML5 - text editor
-  //   $(".textarea").wysihtml5();
-   });
+    $(".textarea").wysihtml5();
+  });
+
+   
 </script>
 </body>
 </html>
