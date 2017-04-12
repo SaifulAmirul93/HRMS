@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  
+  <title>AdminLTE 2 | Data Tables</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -12,13 +12,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="<?php echo base_url();?>/plugins/datatables/dataTables.bootstrap.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url();?>/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="<?php echo base_url();?>/dist/css/skins/_all-skins.min.css">
-  <!-- bootstrap wysihtml5 - text editor -->
-  <link rel="stylesheet" href="<?php echo base_url();?>/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -27,11 +27,25 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
+<style type="text/css">
+  @media print{
+
+    #exclude_column{
+      display:none;
+
+    }
+
+    #exclude_header{
+      display:none;
+    }
+  }
+
+</style>
+
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
-    <!-- /.sidebar -->
-  </aside>
 
+ 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -42,129 +56,87 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Deduction</a></li>
-        <li class="active">Add Deduction</li>
+        
+        <li class="active">List Deduction</li>
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
       <div class="row">
-      <div class="col-xs-12">
+        <div class="col-xs-12">
           
           <!-- /.box -->
 
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title"><b>Add Deduction</b>
-                
-              </h3>
-              
-
-
-              <!-- tools box -->
-              
-              <div class="pull-right box-tools">
-                <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-                  <i class="fa fa-minus"></i></button>
-                <button type="button" class="btn btn-default btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove">
-                  <i class="fa fa-times"></i></button>
-              </div>
-              <!-- /. tools -->
+              <h3 class="box-title"><b>Deduction List</b></h3>
+              <a href="" name="print_all" id="print_all" class="btn btn-success pull-right"><i class="fa fa-print"></i> Print All</a>
             </div>
-
-
-            <div id="salaryDiv">
-             <input type="hidden" name="salary" id="salary" class="form-control">
-           </div>
-            <form action="<?= site_url('dashboard/add_deduction'); ?>" method="post">
             <!-- /.box-header -->
-            <div class="col-lg-12">
-                  <div class="row">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                              Employee Info
-                         </div>
-                          <div class="panel-body">
-                              <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                          <label for="ic_No">Employee Name :</label>
-                                          
-                                           <input list="browsers" id="emp_name" name="emp_name" class="form-control">
-                                              <datalist id="browsers">
-                                                <option value="--Choose Staff">
-                                                  <?php foreach ($emp as $key) {
-                                                                ?>
-                                                  <option value="<?= $key->emp_fullname; ?>" ><?= $key->emp_id; ?></option>
-                                                                                                      
-                                                                                                 
-                                                 <?php
-                                                  } ?>
-                                                
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Employee Name</th>
+                  <th>Employee ID</th>
+                  <th>Amount Request</th>
+                  <th>Deduct Date</th>
+                 
+                  <th>Description</th>
+                  <!-- <th>Approval Status</th> -->
+                  <th style="width: 15%;" id="exclude_header">Action</th>
+                  
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                      $n = 0; 
+                      if($arr!=null){     
+                      foreach ($arr as $ded){
+                      $n++;
+                ?>
+                <tr>
+                  <td><?= $n?></td>
+                  <td><?= $ded->emp_fullname; ?></td>
+                  <td><?= $ded->ep_id; ?></td>
+                  <td>RM <?= $ded->deduct_amount; ?></td>
+                  <td><?= $ded->deduct_date; ?></td>
+                  
+                  <td><?= $ded->deduct_reason; ?></td>
+                  <td id="exclude_column"><!-- <a href="<?= site_url('dashboard/page/h9?view=').$ded->deduct_id; ?>" name="c5" title="View Intern">
+                  <button type="button" class="btn btn-info btn-xs" title="View"><i class="fa fa-eye"></i></button></a>
+                  &nbsp;&nbsp;&nbsp; -->
+                  <!-- <a href="<?= site_url('dashboard/page/c43?edit=').$ded->deduct_id; ?>" name="c5" title="Edit advance">
+                  <button type="button" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></button></a>
+                  &nbsp;&nbsp;&nbsp; -->
+                  <!-- <a href="<?= site_url('dashboard/page/c30?delete=').$ded->deduct_id; ?>" name="c5" title="Delete Leave"> -->
+                  <button type="button" class="ROSButton" id="<?= $n.'ros' ?>" name="<?= $n.'ros' ?>"><i class="fa fa-close"></i></button>
+                  <input type="hidden" class="form-control <?= $n.'ros' ?>" value="<?= $ded->deduct_id ?>">
+                  <!-- </a> -->
+                 <!--  &nbsp;&nbsp;&nbsp;
 
+                  <a onclick="window.open('<?= site_url('dashboard/page/c44') ?>');" name="c5" title="Print Advance">
+                  <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-print"></i></button></a> -->
 
-                                              </datalist>
-                                          
-                                         </div>
-                                      </div>
-                                      <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="ic_No">Employee ID :</label>
-                                            <div id="empDiv">
-                                            <input class="form-control" id="ep_id" name="ep_id" type="text">
-                                            </div>
-                                        </div>
-                                      </div>
-
-                              </div>
-                              <div class="row">
-                                    <div class="col-md-4">
-                                              <div class="form-group">
-                                                  <label for="ic_No">Date :</label>
-                                                  <input class="form-control input-sm" type="text" name="deduct_date" id="deduct_date" value="<?= date("Y-m-d"); ?>">
-                                              </div>
-                                    </div>
-                                    
-
-                              </div>
-                              <div class="row">
-                                    <div class="col-md-4">
-                                    <label for="ic_No">Amount of Deduction (RM) :</label>
-                                    <input class="form-control input-sm" type="text" name="deduct_amount" id="deduct_amount">
-                                    </div>
-                              </div>
-                              
-                              
-                             
-                               <div class="clear" style="height:10px;"></div>
-                               <div class="row">
-                                    <div class="col-md-12">
-                                          <label for="ic_No">Reason :</label>
-                                           <textarea id="deduct_reason" name="deduct_reason" class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-md-4">
-                                      <input class="btn btn-primary" type="submit" value="Add">
-                                  </div>
-                                </div>
-
-                          </div>
-                    </div>
-                  </div>
-              </div>
-
-               </form>
-
-           
-     
-        
-        <!-- /.col-->
+                  </td>  
+                </tr>
+                 <?php
+                      }
+                    }
+                   ?>
+                </tbody>
+               
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
         </div>
+        <!-- /.col -->
       </div>
-     
-      <!-- ./row -->
+      <!-- /.row -->
     </section>
     <!-- /.content -->
   </div>
@@ -377,91 +349,77 @@
 <script src="<?= base_url(); ?>/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="<?= base_url(); ?>/bootstrap/js/bootstrap.min.js"></script>
+<!-- DataTables -->
+<script src="<?= base_url(); ?>/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?= base_url(); ?>/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="<?= base_url(); ?>/plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
 <script src="<?= base_url(); ?>/plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="<?= base_url(); ?>/dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?= base_url(); ?>/dist/js/demo.js"></script>
-<!-- CK Editor -->
-<script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
-<!-- Bootstrap WYSIHTML5 -->
-<script src="<?= base_url(); ?>/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<!-- page script -->
+<script src="<?= base_url(); ?>plugins/bootbox/bootbox.min.js"></script>
+<script>
 
+// $(document).ready(function() {
+    $(".ROSButton").click(function() {
 
-<script type="text/javascript">
-                     function myFunction() {
-                         emp_in= document.getElementById("emp_OTIn").value;
-                         emp_out= document.getElementById("emp_OTOut").value;
-
-
-                         emp_in = emp_in.split(":");
-                          emp_out = emp_out.split(":");
-
-                          var startDate = new Date(0, 0, 0, emp_in[0], emp_in[1], 0);
-                          var endDate = new Date(0, 0, 0, emp_out[0], emp_out[1], 0);
-                          var diff = endDate.getTime() - startDate.getTime();
-
-                           var hours = Math.floor(diff / 1000 / 60 / 60);
-                           
-                          diff -= hours * 1000 * 60 * 60;
-
-                          var minutes = Math.floor(diff / 1000 / 60);
-
-                          var total = (hours < 9 ? "0" : "") + hours + ":" + (minutes < 9 ? "0" : "") + minutes;
+          id = $(this).prop('id');
+          advId = $("."+id).val();
+                
+          bootbox.confirm({
+              message: "Are You Sure?",
+              buttons: {
+                  confirm: {
+                      label: 'Yes',
+                      className: 'btn-success'
+                     
+                  },
+                  cancel: {
+                      label: 'No',
+                      className: 'btn-danger'
+                  }
+              },
+              callback: function (result) {
+                if(result == true){
+                      //bootbox.alert("Deleted!");
+                  $.post('<?= site_url('dashboard/page/d46'); ?>', {deduct_id: advId}, function(data) {
+                        alert("Successfully Deleted");
+                        $(window).attr("location", "<?= site_url('dashboard/page/d2'); ?>");
                         
-                          document.getElementById("emp_OTTotal_hour").value = total;
+                      });
 
-                          //total = total.split(":");
-                          hour = new Date("July 21, 1983 "+total);
-                          dif =hour.getHours();
-                          totalhour=Math.floor(dif / 1000 / 60 / 60);
-
-                          salary = document.getElementById("salary").value;
-                          
-                          rate = document.querySelector('input[name="emp_OTRate"]:checked').value;
-                          
-                          OTRate = (salary/26)/8 * rate; 
-
-                          totalOT= OTRate.toFixed(0)*dif;
-                          document.getElementById("emp_OTTotal").value = totalOT;
-                       
-                      }
-
-
-
-
-$('#emp_name').change(function() {
-            temp = $(this).val();
-            //$.when($('#loadingText').show()).then(function(){
-                $.post('<?= site_url('dashboard/getEmpId'); ?>', {key : temp}, function(data) {
-                  //$('#empDiv').html(data)
-                       
-                    
-                $('#salaryDiv').html(data)
-                       
-                    
+                }
+                      
                   
-                });
+              }
+          });
 
 
-                $.post('<?= site_url('dashboard/getEId'); ?>', {key : temp}, function(data) {
-                  $('#empDiv').html(data)
-                  });
-            //});
-        });
+          });
+// });
 
-   
+
+var print_a=document.getElementById('print_all');
+
+print_a.onclick = function(){
+  window.print();
+}
 
   $(function () {
-    // Replace the <textarea id="editor1"> with a CKEditor
-    // instance, using default configuration.
-    
-    //bootstrap WYSIHTML5 - text editor
-    $(".textarea").wysihtml5();
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
+    });
   });
-
-   
 </script>
 </body>
 </html>

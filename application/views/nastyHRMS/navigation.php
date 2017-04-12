@@ -119,12 +119,12 @@
           <ul class="treeview-menu">
             <!--<li><a href="pages/examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>-->
             <li><a href="<?= site_url('dashboard/page/a61') ?>"><i class="fa  fa-chevron-right"></i>Add Holiday</a></li>
-            <li><a href="<?= site_url('dashboard/page/a7') ?>"><i class="fa  fa-chevron-right"></i>Calendar</a></li>
+            <li><a href="<?= site_url('dashboard/page/h2.1') ?>"><i class="fa  fa-chevron-right"></i>Calendar</a></li>
          
           </ul>
      </li>
 
-     <li class="treeview">
+  <!--    <li class="treeview">
           <a href="#">
             <i class="fa fa-car"></i> <span>Mileage</span>
             <span class="pull-right-container">
@@ -132,12 +132,12 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <!--<li><a href="pages/examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>-->
+            <li><a href="pages/examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>
             <li><a href="<?= site_url('dashboard/page/a6') ?>"><i class="fa  fa-chevron-right"></i>Add Mileage</a></li>
             <li><a href="<?= site_url('dashboard/page/a7') ?>"><i class="fa  fa-chevron-right"></i>List Mileage</a></li>
          
           </ul>
-     </li>
+     </li> -->
 
      <li class="treeview">
           <a href="#">
@@ -188,7 +188,7 @@
           <ul class="treeview-menu">
             <!--<li><a href="pages/examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>-->
             <li><a href="<?=site_url('dashboard/page/d1')?>"><i class="fa  fa-chevron-right"></i>Add Deduction</a></li>
-            <li><a href="<?=site_url('dashboard/page/a9')?>"><i class="fa  fa-chevron-right"></i>Deduction List</a></li>
+            <li><a href="<?=site_url('dashboard/page/d2')?>"><i class="fa  fa-chevron-right"></i>Deduction List</a></li>
            <!--  <li><a href="pages/examples/register.html"><i class="fa fa-circle-o"></i> Register</a></li>
             <li><a href="pages/examples/lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li> -->
             <!--<li><a href="pages/examples/404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li>

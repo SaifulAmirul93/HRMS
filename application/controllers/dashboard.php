@@ -267,13 +267,27 @@ class dashboard extends CI_Controller
                 break;
 
             case "c46":
-            // delete
+            // delete advance
                 if ($this->input->post('adv_id')) {
                 $advID = $this->input->post('adv_id');
                 $this->load->database();
                 $this->load->model('m_advance');
 
                 $this->m_advance->delete($advID);
+                //redirect(site_url('dashboard/page/a25'),'refresh');
+                break;
+                }
+
+                case "d46":
+            // delete deduction
+
+                if ($this->input->post('deduct_id')) {
+                $advID = $this->input->post('deduct_id');
+
+                $this->load->database();
+                $this->load->model('m_deduct');
+
+                $this->m_deduct->delete($advID);
                 //redirect(site_url('dashboard/page/a25'),'refresh');
                 break;
                 }
@@ -775,7 +789,7 @@ class dashboard extends CI_Controller
                 break;
 
                  case 'a25':
-            //view leave
+            //view Advance
                 $this->load->database();
                 $this->load->model('m_advance');
 
@@ -784,6 +798,17 @@ class dashboard extends CI_Controller
                 $this->load->view('nastyHRMS/navigation');
                 $this->load->view('nastyHRMS/header');
                 $this->load->view('list_advance',$arr);
+                break;
+                  case 'd2':
+            //view Deduction
+                $this->load->database();
+                $this->load->model('m_deduct');
+
+                $arr['arr'] = $this->m_deduct->getAll();
+
+                $this->load->view('nastyHRMS/navigation');
+                $this->load->view('nastyHRMS/header');
+                $this->load->view('list_deduct',$arr);
                 break;
             case "c30":
             // delete
@@ -1081,6 +1106,15 @@ class dashboard extends CI_Controller
 
                 break;
                 
+                case "h2.1":
+                  $this->load->database();
+                  $this->load->model('m_holiday');
+                  $arr['arr'] = $this->m_holiday->get();
+                  $this->load->view('nastyHRMS/navigation');
+                  $this->load->view('nastyHRMS/header');
+                  $this->load->view('calendar',$arr);
+                break;
+
                  case "h8" :
             //view 1 by 1 practical
                 //$data['title'] = '<i class="fa fa-file-text"></i> User Edit';
@@ -1252,6 +1286,43 @@ class dashboard extends CI_Controller
                 redirect(site_url('dashboard/page/a6'),'refresh');
             }
         }
+         public function add_holiday()
+        {
+            if ($this->input->post()) {
+                $arr = $this->input->post(); 
+
+                /*$data = array(
+                'deptName' => $this->input->post('deptName'),
+                'dept_description' => $this->input->post('dept_description')
+                );*/
+
+                $this->load->database();
+                $this->load->model('m_holiday');
+                //$this->load->library('my_func');
+                /*foreach ($arr as $key => $value) {
+                    if ($value != null) {
+                        if ($key == 'pass') {
+                            $value = $this->my_func->scpro_encrypt($value);
+                        }
+                        $arr2['us_'.$key] = $value;                     
+                    }
+                }*/
+                foreach ($arr as $key=>$value){
+                if($value != null){
+                    $arr2[$key]=$value;
+                }
+
+                }
+
+                $result = $this->m_holiday->insert($arr2);
+                 
+                echo "<script>alert('Successfully Added');</script>";
+                redirect(site_url('dashboard/page/h2.1'),'refresh');
+            }else{
+                redirect(site_url('dashboard/page/a61'),'refresh');
+            }
+        }
+
 
           public function add_advance()
         {
@@ -1290,6 +1361,46 @@ class dashboard extends CI_Controller
                 redirect(site_url('dashboard/page/a25'),'refresh');
             }
         }
+
+          public function add_deduction()
+        {
+            if ($this->input->post()) {
+                $arr = $this->input->post(); 
+
+                /*$data = array(
+                'deptName' => $this->input->post('deptName'),
+                'dept_description' => $this->input->post('dept_description')
+                );*/
+
+                $this->load->database();
+                $this->load->model('m_deduct');
+                //$this->load->library('my_func');
+                /*foreach ($arr as $key => $value) {
+                    if ($value != null) {
+                        if ($key == 'pass') {
+                            $value = $this->my_func->scpro_encrypt($value);
+                        }
+                        $arr2['us_'.$key] = $value;                     
+                    }
+                }*/
+                 $arr2 = array(
+                            "ep_id" => $arr['emp_id'],
+                            "deduct_amount" => $arr['deduct_amount'],                            
+                            "deduct_date" => $arr['deduct_date'],
+                            "deduct_reason" => $arr['deduct_reason']
+                           
+                        );
+
+                $result = $this->m_deduct->insert($arr2);
+                 
+                echo "<script>alert('Successfully Added');</script>";
+                redirect(site_url('dashboard/page/d2'),'refresh');
+            }else{
+              echo "<script>alert('Not Successfully Added');</script>";
+                redirect(site_url('dashboard/page/d1'),'refresh');
+            }
+        }
+
 
 
         public function getEmpId()

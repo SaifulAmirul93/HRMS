@@ -83,9 +83,17 @@
                            <div class="row">
                                <div class="col-md-4">
                                     <div class="form-group">
-                                      <label for="ic_No">Date :</label>
+                                      <label for="ic_No">Start Date :</label>
                                       
-                                     <input class="form-control input-sm" type="date" name="emp_designation" id="emp_designation">
+                                     <input class="form-control input-sm" type="date" name="emp_holidayDate" id="emp_holidayDate">
+                                      
+                                     </div>
+                                  </div> 
+                                  <div class="col-md-4">
+                                    <div class="form-group">
+                                      <label for="ic_No">End Date :</label>
+                                      
+                                     <input class="form-control input-sm" type="date" name="emp_holidayEndDate" id="emp_holidayEndDate">
                                       
                                      </div>
                                   </div>  
@@ -96,7 +104,7 @@
 
                                       <label for="ic_No">Label Color :</label>
                                       
-                                     <input class="form-control input-sm" type="text" id="holiday_color" value="#fff">
+                                     <input class="form-control input-sm" type="text" id="holiday_color" name="holiday_color" value="#fff">
                                      
                                       
                                      </div>
@@ -111,7 +119,7 @@
                            <div class="row">
                                     <div class="col-md-8">
                                           <label for="ic_No">Holiday Description :</label>
-                                           <textarea id="adv_purpose" name="adv_purpose" class="textarea" placeholder="Place some text here" style="width: 100%; height: 100%; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                           <textarea id="emp_holidayDescription" name="emp_holidayDescription" class="textarea" placeholder="Place some text here" style="width: 100%; height: 100%; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                                     </div>
                                 </div>
 
