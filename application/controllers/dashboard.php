@@ -308,13 +308,24 @@ class dashboard extends CI_Controller
                break;
 
                case 'a24':
-               //add mileage
+               //add advance
                $this->load->database();
                 $this->load->model('m_emp');
                 $arr['emp'] = $this->m_emp->get();  
                $this->load->view('nastyHRMS/navigation');
                $this->load->view('nastyHRMS/header');
                $this->load->view('add_advance',$arr);
+               
+               break;
+
+               case 'in1':
+               //add insurance
+               $this->load->database();
+                $this->load->model('m_emp');
+                $arr['emp'] = $this->m_emp->get();  
+               $this->load->view('nastyHRMS/navigation');
+               $this->load->view('nastyHRMS/header');
+               $this->load->view('add_insurance',$arr);
                
                break;
 
@@ -798,6 +809,17 @@ class dashboard extends CI_Controller
                 $this->load->view('nastyHRMS/navigation');
                 $this->load->view('nastyHRMS/header');
                 $this->load->view('list_advance',$arr);
+                break;
+                  case 'in2':
+            //view Insurance
+                $this->load->database();
+                $this->load->model('m_advance');
+
+                $arr['arr'] = $this->m_advance->getAll();
+
+                $this->load->view('nastyHRMS/navigation');
+                $this->load->view('nastyHRMS/header');
+                $this->load->view('list_insurance',$arr);
                 break;
                   case 'd2':
             //view Deduction

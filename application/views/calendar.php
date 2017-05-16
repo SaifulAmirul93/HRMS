@@ -64,6 +64,7 @@
                       foreach ($arr as $data) { ?>
 
                            <div class="external-event" style="background-color:<?= $data->holiday_color; ?>;color:#FFFFFF"><big><?= $data->emp_holidayDescription; ?><i class="ROSButton fa fa-trash pull-right" aria-hidden="true"></i><i class="fa fa-pencil pull-right"  id="<?= $n.'ros' ?>" name="<?= $n.'ros' ?>" aria-hidden="true"></i></big></div>
+                       <input type="hidden" class="form-control <?= $n.'ros' ?>" value="<?= $data->holiday_id ?>">
                         <!--   title: '',
                           start: "<?= $data->emp_holidayDate; ?>",
                           end: "<?= $data->emp_holidayEndDate; ?>",
